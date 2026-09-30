@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rule-based portfolios of tokenized US stocks. Backtested on real market history, held as Ondo tokens in a smart account you own." />
+    <title>Brighter — Strategy portfolios</title>
+    <script>
+      // Dark is the default. A stored light or dark is the visitor's choice;
+      // "auto" is a choice too, and follows the system. Resolved here, before
+      // paint, so the page never flashes. The old "theme" key was written on
+      // every visit, so it is not a choice: drop it.
+      (function () {
+        try {
+          localStorage.removeItem("theme");
+          var saved = localStorage.getItem("brighter:theme");
+          var theme = saved === "light" || saved === "dark" ? saved
+            : saved === "auto" && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light"
+            : "dark";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

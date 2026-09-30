@@ -1,0 +1,11 @@
+{
+  "outputDirectory": "dist",
+  "headers": [
+    { "source": "/static/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    { "source": "/.well-known/mcp-registry-auth", "headers": [{ "key": "Content-Type", "value": "text/plain; charset=utf-8" }] }
+  ],
+  "rewrites": [
+    { "source": "/api/lifi/:path*", "destination": "/api/lifi?_lifi_path=:path*" },
+    { "source": "/((?!api/(?:lifi|solana)).*)", "destination": "/index.html" }
+  ]
+}
